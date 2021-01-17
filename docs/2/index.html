@@ -3,7 +3,9 @@
 <head>
     <meta charset="utf-8">
     <title>Unicodeコードポイントで日本語か判定する。</title>
+    <script src="./jquery-3.5.1.min.js"></script>
     <script src="./parser/Kakuyomu.js"></script>
+    <script src="./parser/Narou.js"></script>
     <!--
     <script src="./unicode/Japanese.js"></script>
     <script src="./parser/Kakuyomu.js"></script>
@@ -15,7 +17,19 @@
 <body>
 <h1>Unicodeコードポイントで日本語か判定する。</h1>
 <ul><li>JS.Unicode.Japanese.20210117142152</li></ul>
-<input id="editor" type="text" value="にほんご"><br><br>
-<textarea id="viewer" cols="40" rows="3" disabled></textarea>
+<select id="selector">
+    <option value="Kakuyomu">カクヨム</option>
+    <option value="Narou">小説家になろう</option>
+</select>
+<div style="display:flex;">
+    <!--<input id="editor" type="text" value="にほんご"><br><br>-->
+    <textarea id="editor" cols="40" rows="20">あ｜漢字《かんじ》あ
+あ漢字《かんじ》あ
+あ《《傍点》》あ
+あ漢字（かんじ）あ
+あ漢字(かんじ)あ
+</textarea>
+    <textarea id="viewer" cols="40" rows="20" disabled></textarea>
+</div>
 </body>
 </html>

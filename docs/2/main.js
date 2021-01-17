@@ -1,21 +1,28 @@
 window.addEventListener('load', (event) => {
-//    const J = new Japanese();
-//    const K = new Kakuyomu();
-//    const K = new KakuyomuParser();
-    /* フォーカスを抜けないと確定しない
-    document.querySelector('#editor').addEventListener('change', (event)=>{
-        console.log('change');
+    let PARSER = null;
+    document.querySelector('#selector').addEventListener('change', (event)=>{
+        console.log('selector change', event);
+        PARSER = getParser(event.data);
+        console.log(PARSER );
+        parse();
     });
-    */
+    document.querySelector('#selector').addEventListener('input', (event)=>{
+        console.log('selector input', event);
+        PARSER = getParser(event.data);
+        console.log(PARSER );
+        parse();
+    });
     document.querySelector('#editor').addEventListener('input', (event)=>{
         console.log('input');
         console.log(event);
+        parse();
+        /*
         console.log(Kakuyomu);
         const editor = document.querySelector('#editor');
         const viewer = document.querySelector('#viewer');
         viewer.value = Kakuyomu.toHtml(editor.value);
 //        viewer.value = K.parse(editor.value);
-
+        */
         /*
         console.log(editor.value);
         if (J.isHiragana(editor.value)) {
@@ -32,4 +39,18 @@ window.addEventListener('load', (event) => {
         console.log('漢字:', J.isCjk(editor.value));
         */
     });
+    function getParser(id) {
+        if ('Kakuyomu' === id) { return Kakuyomu; }
+        else if ('Narou' === id) { return Kakuyomu; }
+        else { return Kakuyomu; }
+    }
+    function parse() {
+        const editor = document.querySelector('#editor');
+        const viewer = document.querySelector('#viewer');
+        viewer.value = PARSER.toHtml(editor.value);
+    }
+//    document.querySelector('#selector').trigger('input');
+//    document.querySelector('#selector').trigger('change');
+//    $('#selector').trigger('input');
+    $('#selector').trigger('change');
 });
