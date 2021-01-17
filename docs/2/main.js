@@ -1,15 +1,23 @@
 window.addEventListener('load', (event) => {
     let PARSER = null;
     document.querySelector('#selector').addEventListener('change', (event)=>{
-        console.log('selector change', event);
-        PARSER = getParser(event.data);
-        console.log(PARSER );
+        const value = document.querySelector('#selector').value;
+        console.log('selector change', event, this);
+//        console.log('value', this.value);
+        console.log('value', value);
+//        PARSER = getParser(event.data);
+        PARSER = getParser(value);
+        console.log(PARSER);
         parse();
     });
     document.querySelector('#selector').addEventListener('input', (event)=>{
-        console.log('selector input', event);
-        PARSER = getParser(event.data);
-        console.log(PARSER );
+        const value = document.querySelector('#selector').value;
+        console.log('selector input', event, this);
+//        console.log('value', this.value);
+        console.log('value', value);
+//        PARSER = getParser(event.data);
+        PARSER = getParser(value);
+        console.log(PARSER);
         parse();
     });
     document.querySelector('#editor').addEventListener('input', (event)=>{
@@ -40,14 +48,19 @@ window.addEventListener('load', (event) => {
         */
     });
     function getParser(id) {
+        return eval(id);
+        /*
         if ('Kakuyomu' === id) { return Kakuyomu; }
         else if ('Narou' === id) { return Kakuyomu; }
         else { return Kakuyomu; }
+        */
     }
     function parse() {
-        const editor = document.querySelector('#editor');
-        const viewer = document.querySelector('#viewer');
-        viewer.value = PARSER.toHtml(editor.value);
+        if (PARSER) {
+            const editor = document.querySelector('#editor');
+            const viewer = document.querySelector('#viewer');
+            viewer.value = PARSER.toHtml(editor.value);
+        }
     }
 //    document.querySelector('#selector').trigger('input');
 //    document.querySelector('#selector').trigger('change');
